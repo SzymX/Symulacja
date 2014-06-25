@@ -131,8 +131,7 @@ public class Symulacja extends javax.swing.JFrame {
         
         // glowna petla aplikacji
         while (true) {
-            //System.out.println("w petli");
-            //asdasdasdas
+
             //sprawdzanie, czy sa jeszcze samochody
             //jesli nie ma to konczy symulacje
             if (iloscAutAktywnych == 0) break;
