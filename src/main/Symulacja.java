@@ -169,11 +169,7 @@ public class Symulacja extends javax.swing.JFrame {
                 int idMiejscaDocelowego = (int) (Math.random() * 5);
                 int xDocelowego = obiekty.get(idMiejscaDocelowego).getX();
                 int yDocelowego = obiekty.get(idMiejscaDocelowego).getY();
-                //int indexNajblizszegoWolnegoMiejsca = 0;
-                //double odlegloscMiejscaOdObiektu = 999999D;//bezpieczna wartosc poczatkowa
-
                 Miejsce wolnePrzyDocelowym = najblizszeWolneMiejsce(listaMiejsc,xDocelowego,yDocelowego);
-
 
                 //sprawdzamy, czy zostalo znalezione miejsce wolne
                 if (wolnePrzyDocelowym.getX()==99999) {
