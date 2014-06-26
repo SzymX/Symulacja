@@ -81,21 +81,20 @@ public class Symulacja extends javax.swing.JFrame {
        czasPrzybycia = Integer.parseInt(jTextField3.getText());
        iloscAutAktywnych = iloscAutCalkowita;
         
-        //Tworzenie Obiektow - ustawilem 5
-        Obiekt obiekt1 = new Obiekt(100, 400, "Bank");
-        Obiekt obiekt2 = new Obiekt(100, 10, "Market");
-        Obiekt obiekt3 = new Obiekt(50, 700, "Poczta");
-        Obiekt obiekt4 = new Obiekt(300, 200, "Uczelnia");
-        Obiekt obiekt5 = new Obiekt(700, 10, "Lotnisko");
-        
-        //Tworzenie listy i dodanie obiektow
-        ArrayList<Obiekt> obiekty = new ArrayList<Obiekt>();
-        obiekty.add(obiekt1);
-        obiekty.add(obiekt2);
-        obiekty.add(obiekt3);
-        obiekty.add(obiekt4);
-        obiekty.add(obiekt5);
-        //TODO: loswanie miejsc docelowych
+//        //Tworzenie Obiektow - ustawilem 5
+//        Obiekt obiekt1 = new Obiekt(100, 400, "Bank");
+//        Obiekt obiekt2 = new Obiekt(100, 10, "Market");
+//        Obiekt obiekt3 = new Obiekt(50, 700, "Poczta");
+//        Obiekt obiekt4 = new Obiekt(300, 200, "Uczelnia");
+//        Obiekt obiekt5 = new Obiekt(700, 10, "Lotnisko");
+//
+//        //Tworzenie listy i dodanie obiektow
+//        ArrayList<Obiekt> obiekty = new ArrayList<Obiekt>();
+//        obiekty.add(obiekt1);
+//        obiekty.add(obiekt2);
+//        obiekty.add(obiekt3);
+//        obiekty.add(obiekt4);
+//        obiekty.add(obiekt5);
 
         //Tworzenie miejsc parkingowych
         //TODO: tworzenie ulic z miejsc parkinowych
@@ -164,12 +163,16 @@ public class Symulacja extends javax.swing.JFrame {
 
                 //algorytm szukajacy miejsca dla auta
 
-                //losowanie obiektu docelowego, w poblizu
+                //losowanie miejsca docelowego
                 //ktorego chce zaparkowac auto
-                int idMiejscaDocelowego = (int) (Math.random() * 5);
-                int xDocelowego = obiekty.get(idMiejscaDocelowego).getX();
-                int yDocelowego = obiekty.get(idMiejscaDocelowego).getY();
-                Miejsce wolnePrzyDocelowym = najblizszeWolneMiejsce(listaMiejsc,xDocelowego,yDocelowego);
+                Random r = new Random();
+                int xDocelowe = (int) Math.round(r.nextGaussian()*200+500);
+                int yDocelowe = (int) Math.round(r.nextGaussian()*200+500);
+
+//                int idMiejscaDocelowego = (int) (Math.random() * 5);
+//                int xDocelowego = obiekty.get(idMiejscaDocelowego).getX();
+//                int yDocelowego = obiekty.get(idMiejscaDocelowego).getY();
+                Miejsce wolnePrzyDocelowym = najblizszeWolneMiejsce(listaMiejsc,xDocelowe,yDocelowe);
 
                 //sprawdzamy, czy zostalo znalezione miejsce wolne
                 if (wolnePrzyDocelowym.getX()==99999) {
@@ -179,7 +182,7 @@ public class Symulacja extends javax.swing.JFrame {
                     double promien = Math.random()*5 +12; //TODO zweryfikowac wartosci otrzymane z aplikacji
                     double angle = Math.toRadians(Math.random() * 360);
                     int gpsX = wolnePrzyDocelowym.getX() + (int)Math.round( promien * Math.cos( angle ) );
-                    int gpsY= wolnePrzyDocelowym.getY()+ (int)Math.round( promien * Math.sin( angle ) );
+                    int gpsY= wolnePrzyDocelowym.getY()+ (int)Math.round( promien * Math.sin(angle) );
 
                     Miejsce wolneMiejsce = najblizszeWolneMiejsce(listaMiejsc,gpsX,gpsY);
 
