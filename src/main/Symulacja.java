@@ -88,13 +88,6 @@ public class Symulacja extends javax.swing.JFrame {
 //        Obiekt obiekt4 = new Obiekt(300, 200, "Uczelnia");
 //        Obiekt obiekt5 = new Obiekt(700, 10, "Lotnisko");
 //
-//        //Tworzenie listy i dodanie obiektow
-//        ArrayList<Obiekt> obiekty = new ArrayList<Obiekt>();
-//        obiekty.add(obiekt1);
-//        obiekty.add(obiekt2);
-//        obiekty.add(obiekt3);
-//        obiekty.add(obiekt4);
-//        obiekty.add(obiekt5);
 
         //Tworzenie miejsc parkingowych
         //TODO: tworzenie ulic z miejsc parkinowych
