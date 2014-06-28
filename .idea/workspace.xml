@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fa20ba4-56f1-4680-9dcf-3ad8f8746b78" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Symulacja.java" afterPath="$PROJECT_DIR$/src/main/Symulacja.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Main.iws" />
@@ -68,8 +69,8 @@
       <file leaf-file-name="Symulacja.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Symulacja.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42982456" vertical-offset="2624" max-vertical-offset="4515">
-              <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+            <state vertical-scroll-proportion="3.358921" vertical-offset="811" max-vertical-offset="4665">
+              <caret line="162" column="29" selection-start-line="162" selection-start-column="29" selection-end-line="162" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#843#844#0" expanded="true" />
@@ -81,7 +82,7 @@
                 <element signature="e#4415#4423#0" expanded="true" />
                 <element signature="e#8695#8817#0" expanded="true" />
                 <element signature="e#8806#8807#0" expanded="true" />
-                <marker date="1403990923000" expanded="false" signature="6637:7353" placeholder="..." />
+                <marker date="1403990923000" expanded="true" signature="6637:7353" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -679,7 +680,7 @@
             <element signature="e#4415#4423#0" expanded="true" />
             <element signature="e#8695#8817#0" expanded="true" />
             <element signature="e#8806#8807#0" expanded="true" />
-            <marker date="1403990923000" expanded="false" signature="6637:7353" placeholder="..." />
+            <marker date="1403990923000" expanded="true" signature="6637:7353" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -728,7 +729,7 @@
             <element signature="e#4415#4423#0" expanded="true" />
             <element signature="e#8695#8817#0" expanded="true" />
             <element signature="e#8806#8807#0" expanded="true" />
-            <marker date="1403990923000" expanded="false" signature="6637:7353" placeholder="..." />
+            <marker date="1403990923000" expanded="true" signature="6637:7353" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -814,8 +815,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Symulacja.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42982456" vertical-offset="2624" max-vertical-offset="4515">
-          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+        <state vertical-scroll-proportion="3.358921" vertical-offset="811" max-vertical-offset="4665">
+          <caret line="162" column="29" selection-start-line="162" selection-start-column="29" selection-end-line="162" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#843#844#0" expanded="true" />
@@ -827,7 +828,7 @@
             <element signature="e#4415#4423#0" expanded="true" />
             <element signature="e#8695#8817#0" expanded="true" />
             <element signature="e#8806#8807#0" expanded="true" />
-            <marker date="1403990923000" expanded="false" signature="6637:7353" placeholder="..." />
+            <marker date="1403990923000" expanded="true" signature="6637:7353" placeholder="..." />
           </folding>
         </state>
       </provider>
