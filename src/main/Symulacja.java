@@ -247,6 +247,18 @@ public class Symulacja extends javax.swing.JFrame {
         return najblizszeWolneMiejsce;
 
     }
+    private ArrayList<Miejsce> dodajuliceZparkingami(ArrayList<Miejsce> dotychczasowaListaMiejsc, int xPocz, int yPocz, int xKon, int yKon){
+        for(int x = xPocz; x < xKon; x=x+5){
+           for(int y = yPocz; y < yKon; y=y+5){
+               Miejsce noweMiejsce = new Miejsce(x,y);
+               if(!dotychczasowaListaMiejsc.contains(noweMiejsce)) {
+                   dotychczasowaListaMiejsc.add(noweMiejsce);
+               }
+           }
+        }
+        return dotychczasowaListaMiejsc;
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
