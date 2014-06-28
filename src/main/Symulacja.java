@@ -151,7 +151,7 @@ public class Symulacja extends javax.swing.JFrame {
             if (czasPrzybyciaDoKolejnegoAuta == 0) {
                 Random r = new Random();
                 //restart licznika
-                czasPrzybyciaDoKolejnegoAuta = (int)Math.random()*3-1+czasPrzybycia;//random od -1 do 2
+                czasPrzybyciaDoKolejnegoAuta = (int)(Math.random()*3)-1+czasPrzybycia;//random od -1 do 2
 
                 iloscAutCalkowita--;
 
