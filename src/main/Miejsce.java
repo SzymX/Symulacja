@@ -6,12 +6,14 @@ public class Miejsce {
     private boolean zajete;
     private int czas;
     private double wartSystem;
+    private Miejsce miejsceSystem;
     
     public Miejsce(int x, int y){
         this.x = x;
         this.y = y;
         this.zajete = false;
         this.wartSystem = 0.5;
+
     }
     
     public void setZajete(boolean zajete){
@@ -25,6 +27,12 @@ public class Miejsce {
     }
     public double getWartSystem(){
         return this.wartSystem;
+    }
+    public void setMiejsceSystem(Miejsce miejsceSystem) {
+        this.miejsceSystem = miejsceSystem;
+    }
+    public Miejsce getMiejsceSystem(){
+        return this.miejsceSystem;
     }
     
     public void setCzas(int czas){
