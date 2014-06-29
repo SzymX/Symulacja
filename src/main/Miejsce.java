@@ -13,6 +13,7 @@ public class Miejsce {
         this.y = y;
         this.zajete = false;
         this.wartSystem = 0.5;
+        this.miejsceSystem = null;
 
     }
     

@@ -150,7 +150,7 @@ public class Symulacja extends javax.swing.JFrame {
 
                     if (miejsce.getCzas() <= 0) {
                         miejsce.setZajete(false);
-                        if (miejsce.getMiejsceSystem().getWartSystem() == 1) {
+                        if (miejsce.getMiejsceSystem() != null && miejsce.getMiejsceSystem().getWartSystem() == 1) {
                             miejsce.getMiejsceSystem().setWartSystem(0);
                         }
                         iloscAutAktywnych--;//zwalniamy kolejny samochod
@@ -201,7 +201,7 @@ public class Symulacja extends javax.swing.JFrame {
                     int gpsX = wolnePrzyDocelowym.getX() + (int) Math.round(promien * Math.cos(angle));
                     int gpsY = wolnePrzyDocelowym.getY() + (int) Math.round(promien * Math.sin(angle));
 
-                    if (listaAutzAplikacja.contains(samochod)) {   //TODO: procent ktory ma aplikacje
+                    if (listaAutzAplikacja.contains(samochod)) {   // procent ktory ma aplikacje
 
                         Miejsce wolneMiejsceSystem = najblizszeWolneMiejsceSystem(listaMiejsc, gpsX, gpsY);
                         if(!(wolneMiejsceSystem.getX() == 99999)) {
@@ -223,6 +223,7 @@ public class Symulacja extends javax.swing.JFrame {
             for(Miejsce miejsce : miejsca){
                 wynik = wynik + Math.abs((miejsce.getZajete() ? 1 : 0) - miejsce.getWartSystem());
             }
+            System.out.println(wynik);
 
             listaWynikow.add(wynik / miejsca.length);
 
