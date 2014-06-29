@@ -2,6 +2,7 @@
 package main;
 import com.sun.xml.internal.bind.v2.TODO;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Arc2D;
 import java.io.*;
@@ -15,6 +16,7 @@ public class Symulacja extends javax.swing.JFrame {
     // dla bezpieczenstwa dodano wartosci domyslne,
     // ktore mozna zmienic na wejsciu
     private static int iloscAutCalkowita = 1000;
+    private static int procentAutzApka = 100;
     private static int iloscAutAktywnych;
     private static int czasPrzybycia = 3;//w minutach
     private static int czasPrzybyciaDoKolejnegoAuta = 3;//w minutach
@@ -39,14 +41,16 @@ public class Symulacja extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
+        jLabel4 = new JLabel();
+        jTextField4 = new JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Symulacja");
-        setSize(200, 200);
+        setSize(200, 300);
         setLocation(200,200);
         setResizable(true);
-        setLayout(new GridLayout(4,2));
+        setLayout(new GridLayout(7,1));
 
 
 
@@ -56,6 +60,8 @@ public class Symulacja extends javax.swing.JFrame {
         jTextField2.setText("60"); // czas postoju
         jLabel3.setText("Czas przybycia:");
         jTextField3.setText("3"); //czas przybycia
+        jLabel4.setText("Procent aut z Aplikacaja");
+        jTextField4.setText("100");
 
         jButton1.setText("Symuluj");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +76,8 @@ public class Symulacja extends javax.swing.JFrame {
         add(jTextField2);
         add(jLabel3);
         add(jTextField3);
+        add(jLabel4);
+        add(jTextField4);
         add(jButton1);
 
 
@@ -81,7 +89,8 @@ public class Symulacja extends javax.swing.JFrame {
        czasPostoju = Integer.parseInt(jTextField2.getText());
        czasPrzybycia = Integer.parseInt(jTextField3.getText());
        iloscAutAktywnych = iloscAutCalkowita;
-        
+       procentAutzApka = Integer.parseInt(jTextField4.getText());
+
 //        //Tworzenie Obiektow - ustawilem 5
 //        Obiekt obiekt1 = new Obiekt(100, 400, "Bank");
 //        Obiekt obiekt2 = new Obiekt(100, 10, "Market");
@@ -119,7 +128,12 @@ public class Symulacja extends javax.swing.JFrame {
             listaMiejsc.add(miejsca[i]);
         }
 
-        List <Double> listawWynikow = new ArrayList<Double>();
+        List <Double> listaWynikow = new ArrayList<Double>();
+
+        //rozpoznanie czy pojazd ma aplikacje
+        Random random = new Random();
+        Set <Integer> listaAutzAplikacja = listaAutzApka(iloscAutCalkowita,procentAutzApka,random);
+        int samochod = 0;
         
         // glowna petla aplikacji
         while (true) {
@@ -129,29 +143,34 @@ public class Symulacja extends javax.swing.JFrame {
             if (iloscAutAktywnych == 0) break;
 
             //sprawdzanie miejsc parkingowych
-            for (int i = 0; i < miejsca.length; i++) {
-                if (miejsca[i].getZajete()) {
+            for (Miejsce miejsce : miejsca) {
+                if (miejsce.getZajete()) {
                     //jesli zajete to kontrolujemy czas postoju
-                    miejsca[i].zmniejszCzas();
+                    miejsce.zmniejszCzas();
 
-                    if (miejsca[i].getCzas() <= 0) {
-                        miejsca[i].setZajete(false);
-                        if (miejsca[i].getMiejsceSystem().getWartSystem() == 1) {
-                            miejsca[i].setWartSystem(0);
+                    if (miejsce.getCzas() <= 0) {
+                        miejsce.setZajete(false);
+                        if (miejsce.getMiejsceSystem().getWartSystem() == 1) {
+                            miejsce.getMiejsceSystem().setWartSystem(0);
                         }
                         iloscAutAktywnych--;//zwalniamy kolejny samochod
                         //System.out.println("Koniec czasu i odjezdza.");
 
                     }
+                    //System.out.println(miejsca[i].getZajete());
                 }
             }
 
 
             //przybywanie samochodow
             if (czasPrzybyciaDoKolejnegoAuta == 0) {
+                samochod = samochod +1;
                 Random r = new Random();
+
+
                 //restart licznika
-                czasPrzybyciaDoKolejnegoAuta = (int)(Math.random()*3)-1+czasPrzybycia;//random od -1 do 2
+                czasPrzybyciaDoKolejnegoAuta = (int) (Math.random() * 3) - 1 + czasPrzybycia;//random od -1 do 2 + czas Przybycia
+                //System.out.println(czasPrzybyciaDoKolejnegoAuta);
 
                 iloscAutCalkowita--;
 
@@ -159,28 +178,36 @@ public class Symulacja extends javax.swing.JFrame {
                 //losowanie miejsca docelowego
                 //przy ktorym chce zaparkowac auto
 
-                int xDocelowe = (int) Math.round(r.nextGaussian()*200+500);
-                int yDocelowe = (int) Math.round(r.nextGaussian()*200+500);
-                System.out.println("x: "+xDocelowe+" y: "+yDocelowe);
-                Miejsce wolnePrzyDocelowym = najblizszeWolneMiejsce(listaMiejsc,xDocelowe,yDocelowe);
+                int xDocelowe;
+                int yDocelowe;
+                do {
+
+                    xDocelowe = (int) Math.round(r.nextGaussian() * 200 + 500);
+                    yDocelowe = (int) Math.round(r.nextGaussian() * 200 + 500);
+                    //System.out.println("x: "+xDocelowe+" y: "+yDocelowe);
+
+                } while (xDocelowe >= 1000 || yDocelowe >= 1000);
+
+                Miejsce wolnePrzyDocelowym = najblizszeWolneMiejsce(listaMiejsc, xDocelowe, yDocelowe);
 
                 //sprawdzamy, czy zostalo znalezione miejsce wolne
-                if (!(wolnePrzyDocelowym.getX()==99999)) {
+                if (!(wolnePrzyDocelowym.getX() == 99999)) {
                     //samochod parkuje i miejsce jest zajete
                     wolnePrzyDocelowym.setZajete(true);
-                    wolnePrzyDocelowym.setCzas(czasPostoju);
-                    wolnePrzyDocelowym.setMiejsceSystem(wolnePrzyDocelowym);
-                    wolnePrzyDocelowym.getMiejsceSystem().setWartSystem(1);
-                    double promien = Math.random()*5 +5; //TODO zweryfikowac wartosci otrzymane z aplikacji
-                    double angle = Math.toRadians(Math.random() * 360);
-                    int gpsX = wolnePrzyDocelowym.getX() + (int)Math.round( promien * Math.cos( angle ) );
-                    int gpsY= wolnePrzyDocelowym.getY()+ (int)Math.round( promien * Math.sin(angle) );
+                    wolnePrzyDocelowym.setCzas((int) Math.round(r.nextGaussian()*30+czasPostoju));
 
-                    if (czynny) {   //TODO: procent ktory ma aplikacje
+                    double promien = Math.random() * 5 + 5; //TODO zweryfikowac wartosci otrzymane z aplikacji
+                    double angle = Math.toRadians(Math.random() * 360);
+                    int gpsX = wolnePrzyDocelowym.getX() + (int) Math.round(promien * Math.cos(angle));
+                    int gpsY = wolnePrzyDocelowym.getY() + (int) Math.round(promien * Math.sin(angle));
+
+                    if (listaAutzAplikacja.contains(samochod)) {   //TODO: procent ktory ma aplikacje
 
                         Miejsce wolneMiejsceSystem = najblizszeWolneMiejsceSystem(listaMiejsc, gpsX, gpsY);
-                        wolneMiejsceSystem.setWartSystem(1);
-                        wolnePrzyDocelowym.setMiejsceSystem(wolneMiejsceSystem);
+                        if(!(wolneMiejsceSystem.getX() == 99999)) {
+                            wolnePrzyDocelowym.setMiejsceSystem(wolneMiejsceSystem);
+                            wolneMiejsceSystem.setWartSystem(1);
+                        }
                     }
 
                 } else {
@@ -197,7 +224,7 @@ public class Symulacja extends javax.swing.JFrame {
                 wynik = wynik + Math.abs((miejsce.getZajete() ? 1 : 0) - miejsce.getWartSystem());
             }
 
-            listawWynikow.add(wynik / miejsca.length);
+            listaWynikow.add(wynik / miejsca.length);
 
             try {
                 //tzw. timer odpowiada za szybkosc dzialania aplikacji
@@ -207,10 +234,10 @@ public class Symulacja extends javax.swing.JFrame {
             }
 
         }
-        System.out.println(listawWynikow);
+        System.out.println(listaWynikow);
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter("output.txt"));
-            out.write(listawWynikow.toString());
+            out.write(listaWynikow.toString());
             out.close();
         } catch (IOException e) {
             System.out.println(" Save file Exception");
@@ -239,7 +266,7 @@ public class Symulacja extends javax.swing.JFrame {
         for (Miejsce miejsce : miejsca) {
             //sprawdzamy czy miejsce jest wolne
             //System.out.println(i);
-            if (miejsce.getZajete() == false) {
+            if (!miejsce.getZajete()) {
                 //pobieramy odleglosc od obiektu docelowego
                 double odleglosc = Math.abs(Math.sqrt(((miejsce.getX() - xDocelowego) * (miejsce.getX() - xDocelowego)) + ((miejsce.getY() - yDocelowego) * (miejsce.getY() - yDocelowego))));
                 //sprawdzamy, czy jest mniejsza od aktualnie najblizszego miejsca
@@ -254,6 +281,17 @@ public class Symulacja extends javax.swing.JFrame {
         return najblizszeWolneMiejsce;
 
     }
+    private Set<Integer> listaAutzApka (int liczbaAut, int procentAutzAApka, Random random) {
+        int liczbaAutzApka = (int) ((double) procentAutzAApka/100*liczbaAut);
+        Set<Integer> listaAutzApka = new LinkedHashSet<Integer>();
+        while (listaAutzApka.size() < liczbaAutzApka)
+        {
+            Integer next = random.nextInt(liczbaAut) + 1;
+            // As we're adding to a set, this will automatically do a containment check
+            listaAutzApka.add(next);
+        }
+        return listaAutzApka;
+    }
 
     private Miejsce najblizszeWolneMiejsceSystem(ArrayList<Miejsce> miejsca, int xGPS, int yGPS){
 
@@ -263,7 +301,7 @@ public class Symulacja extends javax.swing.JFrame {
         for (Miejsce miejsce : miejsca) {
             //sprawdzamy czy miejsce jest wolne
             //System.out.println(i);
-            if (miejsce.getWartSystem() == 0 || miejsce.getWartSystem()==0.5) {
+            if (miejsce.getWartSystem() == 0 || miejsce.getWartSystem()== 0.5) {
                 //pobieramy odleglosc od obiektu docelowego
                 double odleglosc = Math.abs(Math.sqrt(((miejsce.getX() - xGPS) * (miejsce.getX() - xGPS)) + ((miejsce.getY() - yGPS) * (miejsce.getY() - yGPS))));
                 //sprawdzamy, czy jest mniejsza od aktualnie najblizszego miejsca
@@ -298,8 +336,10 @@ public class Symulacja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
