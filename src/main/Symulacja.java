@@ -218,14 +218,17 @@ public class Symulacja extends javax.swing.JFrame {
                 czasPrzybyciaDoKolejnegoAuta--;
 
             //liczenie wskaźnika
-            double wynik = 0;
-
+            double suma = 0;
             for(Miejsce miejsce : miejsca){
-                wynik = wynik + Math.abs((miejsce.getZajete() ? 1 : 0) - miejsce.getWartSystem());
+                suma = suma + Math.abs((miejsce.getZajete() ? 1 : 0) - miejsce.getWartSystem());
             }
-            System.out.println(wynik);
+            System.out.println(suma);
+            double wynik = suma/miejsca.length;
+            wynik *=100000;
+            wynik = Math.round(wynik);
+            wynik /= 100000;
 
-            listaWynikow.add(wynik / miejsca.length);
+            listaWynikow.add(wynik);
 
             try {
                 //tzw. timer odpowiada za szybkosc dzialania aplikacji
@@ -237,7 +240,14 @@ public class Symulacja extends javax.swing.JFrame {
         }
         System.out.println(listaWynikow);
         try {
+            ArrayList<Integer> ustawienia = new ArrayList<Integer>();
+            ustawienia.add(iloscAutCalkowita);
+            ustawienia.add(czasPostoju);
+            ustawienia.add(czasPrzybycia);
+            ustawienia.add(procentAutzApka);
             BufferedWriter out = new BufferedWriter(new FileWriter("output.txt"));
+            out.write(ustawienia.toString());
+            out.newLine();
             out.write(listaWynikow.toString());
             out.close();
         } catch (IOException e) {
