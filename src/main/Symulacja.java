@@ -1,11 +1,10 @@
 
 package main;
-import com.sun.xml.internal.bind.v2.TODO;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Arc2D;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,8 +21,6 @@ public class Symulacja extends javax.swing.JFrame {
     private static int czasPrzybyciaDoKolejnegoAuta = 3;//w minutach
     private static int czasPostoju = 60; // w minutach
     private static int szybkoscUplywuCzasu = 1;//1000 to sekunda, bo w milisekundach
-    private static boolean symuluj = false;
-    private static boolean czynny = true;
     
     public Symulacja() {
         initComponents(); //tworzenie interfejsu
@@ -34,7 +31,7 @@ public class Symulacja extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+
         jTextField1 = new javax.swing.JTextField(); //ilosc aut
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -93,43 +90,18 @@ public class Symulacja extends javax.swing.JFrame {
 
 
         //Tworzenie miejsc parkingowych
-        //TODO: tworzenie ulic z miejsc parkinowych
-//        Miejsce listaMiejsc[] = new Miejsce[21];
         ArrayList<Miejsce> listaMiejsc = new ArrayList<Miejsce>();
-//        listaMiejsc[0] = new Miejsce(100,150);
-//        listaMiejsc[1] = new Miejsce(120,150);
-//        listaMiejsc[2] = new Miejsce(140,150);
-//        listaMiejsc[3] = new Miejsce(100,200);
-//        listaMiejsc[4] = new Miejsce(120,200);
-//        listaMiejsc[5] = new Miejsce(140,200);
-//        listaMiejsc[6] = new Miejsce(160,400);
-//        listaMiejsc[7] = new Miejsce(160,450);
-//        listaMiejsc[8] = new Miejsce(140,450);
-//        listaMiejsc[9] = new Miejsce(120,450);
-//        listaMiejsc[10] = new Miejsce(100,450);
-//        listaMiejsc[11] = new Miejsce(60,650);
-//        listaMiejsc[12] = new Miejsce(50,650);
-//        listaMiejsc[13] = new Miejsce(40,650);
-//        listaMiejsc[14] = new Miejsce(30,650);
-//        listaMiejsc[15] = new Miejsce(650,500);
-//        listaMiejsc[16] = new Miejsce(700,500);
-//        listaMiejsc[17] = new Miejsce(750,500);
-//        listaMiejsc[18] = new Miejsce(650,550);
-//        listaMiejsc[19] = new Miejsce(700,550);
-//        listaMiejsc[20] = new Miejsce(750,550);
-//
-//        for(int i=0; i< listaMiejsc.length; i++) {
-//            listaMiejsc.add(listaMiejsc[i]);
-//        }
 
-        listaMiejsc = dodajuliceZparkingami(listaMiejsc,450,0,450,999);
-        listaMiejsc = dodajuliceZparkingami(listaMiejsc,550,0,550,999);
-        listaMiejsc = dodajuliceZparkingami(listaMiejsc,650,0,650,999);
-        listaMiejsc = dodajuliceZparkingami(listaMiejsc,350,0,350,999);
-        listaMiejsc = dodajuliceZparkingami(listaMiejsc,150,0,150,999);
-        listaMiejsc = dodajuliceZparkingami(listaMiejsc,750,0,750,999);
-        listaMiejsc = dodajuliceZparkingami(listaMiejsc,0,550,999,550);
-        listaMiejsc = dodajuliceZparkingami(listaMiejsc,0,450,999,450);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,100,0,100,999);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,400,0,400,999);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,600,0,600,999);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,900,0,900,999);
+//        listaMiejsc = dodajuliceZparkingami(listaMiejsc,150,0,150,999);
+//        listaMiejsc = dodajuliceZparkingami(listaMiejsc,750,0,750,999);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,0,100,999,100);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,0,400,999,400);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,0,600,999,600);
+        System.out.println(listaMiejsc.size());
 
 
         List <Double> listaWynikow = new ArrayList<Double>();
@@ -249,7 +221,10 @@ public class Symulacja extends javax.swing.JFrame {
             ustawienia.add(czasPostoju);
             ustawienia.add(czasPrzybycia);
             ustawienia.add(procentAutzApka);
-            BufferedWriter out = new BufferedWriter(new FileWriter("output.txt"));
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM-HH:mm:ss");
+            String date = simpleDateFormat.format(new Date());
+            String filename = date+".txt";
+            BufferedWriter out = new BufferedWriter(new FileWriter(filename));
             out.write(ustawienia.toString());
             out.newLine();
             out.write(listaWynikow.toString());
@@ -350,7 +325,6 @@ public class Symulacja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
