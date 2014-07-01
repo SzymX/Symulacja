@@ -91,42 +91,46 @@ public class Symulacja extends javax.swing.JFrame {
        iloscAutAktywnych = iloscAutCalkowita;
        procentAutzApka = Integer.parseInt(jTextField4.getText());
 
-//        //Tworzenie Obiektow - ustawilem 5
-//        Obiekt obiekt1 = new Obiekt(100, 400, "Bank");
-//        Obiekt obiekt2 = new Obiekt(100, 10, "Market");
-//        Obiekt obiekt3 = new Obiekt(50, 700, "Poczta");
-//        Obiekt obiekt4 = new Obiekt(300, 200, "Uczelnia");
-//        Obiekt obiekt5 = new Obiekt(700, 10, "Lotnisko");
 
         //Tworzenie miejsc parkingowych
         //TODO: tworzenie ulic z miejsc parkinowych
-        Miejsce miejsca[] = new Miejsce[21];
+//        Miejsce listaMiejsc[] = new Miejsce[21];
         ArrayList<Miejsce> listaMiejsc = new ArrayList<Miejsce>();
-        miejsca[0] = new Miejsce(100,150);
-        miejsca[1] = new Miejsce(120,150);
-        miejsca[2] = new Miejsce(140,150);
-        miejsca[3] = new Miejsce(100,200);
-        miejsca[4] = new Miejsce(120,200);
-        miejsca[5] = new Miejsce(140,200);
-        miejsca[6] = new Miejsce(160,400);
-        miejsca[7] = new Miejsce(160,450);
-        miejsca[8] = new Miejsce(140,450);
-        miejsca[9] = new Miejsce(120,450);
-        miejsca[10] = new Miejsce(100,450);
-        miejsca[11] = new Miejsce(60,650);
-        miejsca[12] = new Miejsce(50,650);
-        miejsca[13] = new Miejsce(40,650);
-        miejsca[14] = new Miejsce(30,650);      
-        miejsca[15] = new Miejsce(650,500);
-        miejsca[16] = new Miejsce(700,500);
-        miejsca[17] = new Miejsce(750,500);
-        miejsca[18] = new Miejsce(650,550);
-        miejsca[19] = new Miejsce(700,550);
-        miejsca[20] = new Miejsce(750,550);
+//        listaMiejsc[0] = new Miejsce(100,150);
+//        listaMiejsc[1] = new Miejsce(120,150);
+//        listaMiejsc[2] = new Miejsce(140,150);
+//        listaMiejsc[3] = new Miejsce(100,200);
+//        listaMiejsc[4] = new Miejsce(120,200);
+//        listaMiejsc[5] = new Miejsce(140,200);
+//        listaMiejsc[6] = new Miejsce(160,400);
+//        listaMiejsc[7] = new Miejsce(160,450);
+//        listaMiejsc[8] = new Miejsce(140,450);
+//        listaMiejsc[9] = new Miejsce(120,450);
+//        listaMiejsc[10] = new Miejsce(100,450);
+//        listaMiejsc[11] = new Miejsce(60,650);
+//        listaMiejsc[12] = new Miejsce(50,650);
+//        listaMiejsc[13] = new Miejsce(40,650);
+//        listaMiejsc[14] = new Miejsce(30,650);
+//        listaMiejsc[15] = new Miejsce(650,500);
+//        listaMiejsc[16] = new Miejsce(700,500);
+//        listaMiejsc[17] = new Miejsce(750,500);
+//        listaMiejsc[18] = new Miejsce(650,550);
+//        listaMiejsc[19] = new Miejsce(700,550);
+//        listaMiejsc[20] = new Miejsce(750,550);
+//
+//        for(int i=0; i< listaMiejsc.length; i++) {
+//            listaMiejsc.add(listaMiejsc[i]);
+//        }
 
-        for(int i=0; i< miejsca.length; i++) {
-            listaMiejsc.add(miejsca[i]);
-        }
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,450,0,450,999);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,550,0,550,999);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,650,0,650,999);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,350,0,350,999);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,150,0,150,999);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,750,0,750,999);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,0,550,999,550);
+        listaMiejsc = dodajuliceZparkingami(listaMiejsc,0,450,999,450);
+
 
         List <Double> listaWynikow = new ArrayList<Double>();
 
@@ -143,7 +147,7 @@ public class Symulacja extends javax.swing.JFrame {
             if (iloscAutAktywnych == 0) break;
 
             //sprawdzanie miejsc parkingowych
-            for (Miejsce miejsce : miejsca) {
+            for (Miejsce miejsce : listaMiejsc) {
                 if (miejsce.getZajete()) {
                     //jesli zajete to kontrolujemy czas postoju
                     miejsce.zmniejszCzas();
@@ -157,7 +161,7 @@ public class Symulacja extends javax.swing.JFrame {
                         //System.out.println("Koniec czasu i odjezdza.");
 
                     }
-                    //System.out.println(miejsca[i].getZajete());
+                    //System.out.println(listaMiejsc[i].getZajete());
                 }
             }
 
@@ -174,8 +178,8 @@ public class Symulacja extends javax.swing.JFrame {
 
                 iloscAutCalkowita--;
 
-                //algorytm szukajacy miejsca dla auta
-                //losowanie miejsca docelowego
+                //algorytm szukajacy listaMiejsc dla auta
+                //losowanie listaMiejsc docelowego
                 //przy ktorym chce zaparkowac auto
 
                 int xDocelowe;
@@ -219,11 +223,11 @@ public class Symulacja extends javax.swing.JFrame {
 
             //liczenie wskaźnika
             double suma = 0;
-            for(Miejsce miejsce : miejsca){
+            for(Miejsce miejsce : listaMiejsc){
                 suma = suma + Math.abs((miejsce.getZajete() ? 1 : 0) - miejsce.getWartSystem());
             }
-            System.out.println(suma);
-            double wynik = suma/miejsca.length;
+            //System.out.println(suma);
+            double wynik = suma/listaMiejsc.size();
             wynik *=100000;
             wynik = Math.round(wynik);
             wynik /= 100000;
@@ -329,8 +333,8 @@ public class Symulacja extends javax.swing.JFrame {
     }
 
     private ArrayList<Miejsce> dodajuliceZparkingami(ArrayList<Miejsce> dotychczasowaListaMiejsc, int xPocz, int yPocz, int xKon, int yKon){
-        for(int x = xPocz; x < xKon; x=x+5){
-           for(int y = yPocz; y < yKon; y=y+5){
+        for(int x = xPocz; x < xKon+1; x=x+5){
+           for(int y = yPocz; y < yKon+1; y=y+5){
                Miejsce noweMiejsce = new Miejsce(x,y);
                if(!dotychczasowaListaMiejsc.contains(noweMiejsce)) {
                    dotychczasowaListaMiejsc.add(noweMiejsce);
