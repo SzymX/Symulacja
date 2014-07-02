@@ -69,8 +69,8 @@
       <file leaf-file-name="Symulacja.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Symulacja.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39278558" vertical-offset="3179" max-vertical-offset="5115">
-              <caret line="225" column="14" selection-start-line="225" selection-start-column="14" selection-end-line="225" selection-end-column="14" />
+            <state vertical-scroll-proportion="-0.27054107" vertical-offset="1155" max-vertical-offset="5250">
+              <caret line="68" column="21" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#786#787#0" expanded="true" />
@@ -78,23 +78,13 @@
                 <element signature="e#849#879#0" expanded="true" />
                 <element signature="e#2094#2275#0" expanded="true" />
                 <element signature="e#2264#2265#0" expanded="true" />
-                <element signature="e#3071#3080#0" expanded="true" />
-                <element signature="e#3866#3874#0" expanded="true" />
-                <element signature="e#8665#8674#0" expanded="true" />
-                <element signature="e#9599#9721#0" expanded="true" />
-                <element signature="e#9710#9711#0" expanded="true" />
-                <element signature="e#11071#11080#0" expanded="true" />
+                <element signature="e#3153#3162#0" expanded="true" />
+                <element signature="e#3948#3956#0" expanded="true" />
+                <element signature="e#8819#8828#0" expanded="true" />
+                <element signature="e#9928#10050#0" expanded="true" />
+                <element signature="e#10039#10040#0" expanded="true" />
+                <element signature="e#11400#11409#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Arrays.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar!/java/util/Arrays.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4485" max-vertical-offset="5010">
-              <caret line="329" column="0" selection-start-line="329" selection-start-column="0" selection-end-line="329" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -104,16 +94,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="92" max-vertical-offset="630">
               <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Obiekt.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/Obiekt.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="435">
-              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -494,7 +474,11 @@
       <created>1404249231272</created>
       <updated>1404249231272</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="usprawnienie symulacji prototyp">
+      <created>1404251140355</created>
+      <updated>1404251140355</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -577,11 +561,12 @@
     <MESSAGE value="zmiana wgrywania miejsc parkingowych" />
     <MESSAGE value="code clean up" />
     <MESSAGE value="new map" />
-    <option name="LAST_COMMIT_MESSAGE" value="new map" />
+    <MESSAGE value="usprawnienie symulacji prototyp" />
+    <option name="LAST_COMMIT_MESSAGE" value="usprawnienie symulacji prototyp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="65" />
+      <option name="time" value="75" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -600,12 +585,12 @@
             <element signature="e#849#879#0" expanded="true" />
             <element signature="e#2094#2275#0" expanded="true" />
             <element signature="e#2264#2265#0" expanded="true" />
-            <element signature="e#3071#3080#0" expanded="true" />
-            <element signature="e#3866#3874#0" expanded="true" />
-            <element signature="e#8665#8674#0" expanded="true" />
-            <element signature="e#9599#9721#0" expanded="true" />
-            <element signature="e#9710#9711#0" expanded="true" />
-            <element signature="e#11071#11080#0" expanded="true" />
+            <element signature="e#3153#3162#0" expanded="true" />
+            <element signature="e#3948#3956#0" expanded="true" />
+            <element signature="e#8819#8828#0" expanded="true" />
+            <element signature="e#9928#10050#0" expanded="true" />
+            <element signature="e#10039#10040#0" expanded="true" />
+            <element signature="e#11400#11409#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -637,12 +622,12 @@
             <element signature="e#849#879#0" expanded="true" />
             <element signature="e#2094#2275#0" expanded="true" />
             <element signature="e#2264#2265#0" expanded="true" />
-            <element signature="e#3071#3080#0" expanded="true" />
-            <element signature="e#3866#3874#0" expanded="true" />
-            <element signature="e#8665#8674#0" expanded="true" />
-            <element signature="e#9599#9721#0" expanded="true" />
-            <element signature="e#9710#9711#0" expanded="true" />
-            <element signature="e#11071#11080#0" expanded="true" />
+            <element signature="e#3153#3162#0" expanded="true" />
+            <element signature="e#3948#3956#0" expanded="true" />
+            <element signature="e#8819#8828#0" expanded="true" />
+            <element signature="e#9928#10050#0" expanded="true" />
+            <element signature="e#10039#10040#0" expanded="true" />
+            <element signature="e#11400#11409#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -674,12 +659,12 @@
             <element signature="e#849#879#0" expanded="true" />
             <element signature="e#2094#2275#0" expanded="true" />
             <element signature="e#2264#2265#0" expanded="true" />
-            <element signature="e#3071#3080#0" expanded="true" />
-            <element signature="e#3866#3874#0" expanded="true" />
-            <element signature="e#8665#8674#0" expanded="true" />
-            <element signature="e#9599#9721#0" expanded="true" />
-            <element signature="e#9710#9711#0" expanded="true" />
-            <element signature="e#11071#11080#0" expanded="true" />
+            <element signature="e#3153#3162#0" expanded="true" />
+            <element signature="e#3948#3956#0" expanded="true" />
+            <element signature="e#8819#8828#0" expanded="true" />
+            <element signature="e#9928#10050#0" expanded="true" />
+            <element signature="e#10039#10040#0" expanded="true" />
+            <element signature="e#11400#11409#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -754,8 +739,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Symulacja.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39278558" vertical-offset="3179" max-vertical-offset="5115">
-          <caret line="225" column="14" selection-start-line="225" selection-start-column="14" selection-end-line="225" selection-end-column="14" />
+        <state vertical-scroll-proportion="-0.27054107" vertical-offset="1155" max-vertical-offset="5250">
+          <caret line="68" column="21" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#786#787#0" expanded="true" />
@@ -763,12 +748,12 @@
             <element signature="e#849#879#0" expanded="true" />
             <element signature="e#2094#2275#0" expanded="true" />
             <element signature="e#2264#2265#0" expanded="true" />
-            <element signature="e#3071#3080#0" expanded="true" />
-            <element signature="e#3866#3874#0" expanded="true" />
-            <element signature="e#8665#8674#0" expanded="true" />
-            <element signature="e#9599#9721#0" expanded="true" />
-            <element signature="e#9710#9711#0" expanded="true" />
-            <element signature="e#11071#11080#0" expanded="true" />
+            <element signature="e#3153#3162#0" expanded="true" />
+            <element signature="e#3948#3956#0" expanded="true" />
+            <element signature="e#8819#8828#0" expanded="true" />
+            <element signature="e#9928#10050#0" expanded="true" />
+            <element signature="e#10039#10040#0" expanded="true" />
+            <element signature="e#11400#11409#0" expanded="true" />
           </folding>
         </state>
       </provider>

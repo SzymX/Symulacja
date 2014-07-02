@@ -81,6 +81,9 @@ public class Symulacja extends javax.swing.JFrame {
 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        for(procentAutzApka = 10; procentAutzApka < 70; procentAutzApka += 5) {
+
         iloscAutCalkowita = Integer.parseInt(jTextField1.getText());
         czasPostoju = Integer.parseInt(jTextField2.getText());
         czasPrzybycia = Integer.parseInt(jTextField3.getText());
@@ -108,9 +111,9 @@ public class Symulacja extends javax.swing.JFrame {
         //rozpoznanie czy pojazd ma aplikacje
         Random random = new Random();
         Set<Integer> listaAutzAplikacja = listaAutzApka(iloscAutCalkowita, procentAutzApka, random);
+        System.out.println(listaAutzAplikacja.size());
         int samochod = 0;
 
-        //for(procentAutzApka = 10; procentAutzApka < 70; procentAutzApka += 5) {
         // glowna petla aplikacji
         while (true) {
 
@@ -142,6 +145,7 @@ public class Symulacja extends javax.swing.JFrame {
             if (czasPrzybyciaDoKolejnegoAuta == 0) {
                 samochod = samochod + 1;
                 Random r = new Random();
+                System.out.println(samochod);
 
 
                 //restart licznika
@@ -214,14 +218,14 @@ public class Symulacja extends javax.swing.JFrame {
             }
 
         }
-        System.out.println(listaWynikow);
+            System.out.println(procentAutzApka);
+            System.out.println(listaWynikow);
         try {
             ArrayList<Integer> ustawienia = new ArrayList<Integer>();
             ustawienia.add(iloscAutCalkowita);
             ustawienia.add(czasPostoju);
             ustawienia.add(czasPrzybycia);
             ustawienia.add(procentAutzApka);
-            System.out.println(procentAutzApka);
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM-HH:mm:ss");
             String date = simpleDateFormat.format(new Date());
             String filename = date + ".txt";
@@ -229,11 +233,16 @@ public class Symulacja extends javax.swing.JFrame {
             out.write(ustawienia.toString());
             out.newLine();
             out.write(listaWynikow.toString());
+            out.flush();
             out.close();
+            Thread.sleep(1000); //opoznienie w celu zapisu nowego pliku
         } catch (IOException e) {
             System.out.println(" Save file Exception");
+        } catch (InterruptedException ex){
+            Logger.getLogger(Symulacja.class.getName()).log(Level.SEVERE, null, ex);
+
         }
-        //}
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
