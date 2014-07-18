@@ -146,6 +146,8 @@ public class Symulacja extends javax.swing.JFrame {
         Set<Integer> listaAutzAplikacja = listaAutzApka(iloscAutCalkowita, procentAutzApka, random);
         // System.out.println(listaAutzAplikacja.size());
         int samochod = 0;
+            long drogaRtotal = 0;
+            long drogaStotal = 0;
 
         // glowna petla aplikacji
         while (true) {
@@ -184,6 +186,9 @@ public class Symulacja extends javax.swing.JFrame {
                 //restart licznika
                 czasPrzybyciaDoKolejnegoAuta = (int) (Math.random() * 3) - 1 + czasPrzybycia;//random od -1 do 2 + czas Przybycia
                 //System.out.println(czasPrzybyciaDoKolejnegoAuta);
+                Obiekt wjazd = listaWjazdow.get((int) (Math.random() * 15));
+                int drogaR = 0;
+                int drogaS = 0;
 
                 //iloscAutCalkowita--;
 
@@ -201,33 +206,78 @@ public class Symulacja extends javax.swing.JFrame {
 
                 } while (xDocelowe >= 1000 || yDocelowe >= 1000);
 
-                Miejsce wolnePrzyDocelowym = najblizszeWolneMiejsce(listaMiejsc, xDocelowe, yDocelowe);
+                if (listaAutzAplikacja.contains(samochod)) {    //jesli ma aplikacje
+                    Miejsce wolnePrzyDocelowymSys = najblizszeWolneMiejsceSystem(listaMiejsc, xDocelowe, yDocelowe); // jedzie do wskazanego przez system
+                    if (!(wolnePrzyDocelowymSys.getX() == 99999)) {
+                        int gpsX, gpsY;
+                        drogaS = drogaMiedzyPktami(wjazd.getX(), wjazd.getY(), wolnePrzyDocelowymSys.getX(), wolnePrzyDocelowymSys.getY());
+                        if (!wolnePrzyDocelowymSys.getZajete()) {        //jesli jest wolne
+                            wolnePrzyDocelowymSys.setZajete(true);     //zajmuje miejsce
+                            wolnePrzyDocelowymSys.setCzas((int) Math.round(r.nextGaussian() * 55 + czasPostoju) * 60);
+                            double promien = Math.random() * 5 - 2.5 + 5.9;       //lapie GPS
+                            double angle = Math.toRadians(Math.random() * 360);
+                            gpsX = wolnePrzyDocelowymSys.getX() + (int) Math.round(promien * Math.cos(angle));
+                            gpsY = wolnePrzyDocelowymSys.getY() + (int) Math.round(promien * Math.sin(angle));
 
-                //sprawdzamy, czy zostalo znalezione miejsce wolne
-                if (!(wolnePrzyDocelowym.getX() == 99999)) {
-                    //samochod parkuje i miejsce jest zajete
-                    wolnePrzyDocelowym.setZajete(true);
-                    wolnePrzyDocelowym.setCzas((int) Math.round(r.nextGaussian() * 55 + czasPostoju) * 60);
-
-                    double promien = Math.random() * 5 - 2.5 + 5.9;
-                    double angle = Math.toRadians(Math.random() * 360);
-                    int gpsX = wolnePrzyDocelowym.getX() + (int) Math.round(promien * Math.cos(angle));
-                    int gpsY = wolnePrzyDocelowym.getY() + (int) Math.round(promien * Math.sin(angle));
+                            Miejsce wolneMiejsceSystem = najblizszeWolneMiejsceSystem(listaMiejsc, gpsX, gpsY); //znajduje najblizsze wolne dla GPS
+                            if (!(wolneMiejsceSystem.getX() == 99999)) {
+                                wolnePrzyDocelowymSys.setMiejsceSystem(wolneMiejsceSystem); // zajmuje w systemie
+                                wolneMiejsceSystem.setWartSystem(1);
+                            } //mozna dopisać, że zaznacza najblize miejsce
 
 
-                    if (listaAutzAplikacja.contains(samochod)) {   // procent ktory ma aplikacje
+                        } else {
+                            Miejsce wolneMiejsce = najblizszeWolneMiejsce(listaMiejsc, wolnePrzyDocelowymSys.getX(), wolnePrzyDocelowymSys.getY());
+                            if (!(wolneMiejsce.getX() == 99999)) {
+                                int dodatkowaDroga = drogaMiedzyPktami(wolnePrzyDocelowymSys.getX(), wolnePrzyDocelowymSys.getY(), wolneMiejsce.getX(), wolneMiejsce.getY());
+                                drogaS = drogaS + dodatkowaDroga;
+                                wolneMiejsce.setZajete(true);     //zajmuje miejsce
+                                wolneMiejsce.setCzas((int) Math.round(r.nextGaussian() * 55 + czasPostoju) * 60);
+                                double promien = Math.random() * 5 - 2.5 + 5.9;       //lapie GPS
+                                double angle = Math.toRadians(Math.random() * 360);
+                                gpsX = wolneMiejsce.getX() + (int) Math.round(promien * Math.cos(angle));
+                                gpsY = wolneMiejsce.getY() + (int) Math.round(promien * Math.sin(angle));
 
-                        Miejsce wolneMiejsceSystem = najblizszeWolneMiejsceSystem(listaMiejsc, gpsX, gpsY);
-                        if (!(wolneMiejsceSystem.getX() == 99999)) {
-                            wolnePrzyDocelowym.setMiejsceSystem(wolneMiejsceSystem);
-                            wolneMiejsceSystem.setWartSystem(1);
+                                Miejsce wolneMiejsceSystem = najblizszeWolneMiejsceSystem(listaMiejsc, gpsX, gpsY); //znajduje najblizsze wolne dla GPS
+                                if (!(wolneMiejsceSystem.getX() == 99999)) {
+                                    wolneMiejsce.setMiejsceSystem(wolneMiejsceSystem); // zajmuje w systemie
+                                    wolneMiejsceSystem.setWartSystem(1);
+                                }
+                            } else { //mozna dopisać, że zaznacza najblize miejsce
+
+                                iloscAutAktywnych--;//czyli samochod nie parkuje i jedzie w dal
+                            }
                         }
+
                     }
 
+
                 } else {
-                    iloscAutAktywnych--;//czyli samochod nie parkuje i jedzie w dal
-                    //System.out.println("Nie znalazl i odjechal.");
+
+                    Miejsce najblizszePrzyDocelowym = najblizszeMiejsce(listaMiejsc, xDocelowe, yDocelowe);
+                    drogaR = drogaMiedzyPktami(wjazd.getX(), wjazd.getY(), najblizszePrzyDocelowym.getX(), najblizszePrzyDocelowym.getY());
+                    if (!(najblizszePrzyDocelowym.getX() == 99999)) {
+                        najblizszePrzyDocelowym.setZajete(true);
+                        najblizszePrzyDocelowym.setCzas((int) Math.round(r.nextGaussian() * 55 + czasPostoju) * 60);
+
+                    } else {
+                        Miejsce wolnePrzyDocelowym = najblizszeWolneMiejsce(listaMiejsc, najblizszePrzyDocelowym.getX(), najblizszePrzyDocelowym.getY());
+                        drogaR = drogaR + drogaMiedzyPktami(najblizszePrzyDocelowym.getX(), najblizszePrzyDocelowym.getY(), wolnePrzyDocelowym.getX(), wolnePrzyDocelowym.getY());
+                        if (!(wolnePrzyDocelowym.getX() == 99999)) {
+                            najblizszePrzyDocelowym.setZajete(true);
+                            najblizszePrzyDocelowym.setCzas((int) Math.round(r.nextGaussian() * 55 + czasPostoju) * 60);
+                        } else {
+                            iloscAutAktywnych--;//czyli samochod nie parkuje i jedzie w dal
+                        }
+
+                    }
+
+
                 }
+            drogaRtotal += drogaR;
+            drogaStotal += drogaS;
+
+
             } else
                 czasPrzybyciaDoKolejnegoAuta--;
 
@@ -243,6 +293,8 @@ public class Symulacja extends javax.swing.JFrame {
             wynik /= 100000;
 
             listaWynikow.add(wynik);
+
+
 
             try {
                 //tzw. timer odpowiada za szybkosc dzialania aplikacji
@@ -265,6 +317,10 @@ public class Symulacja extends javax.swing.JFrame {
             String filename = date + ".txt";
             BufferedWriter out = new BufferedWriter(new FileWriter(filename));
             out.write(ustawienia.toString());
+            out.newLine();
+            out.write((int)drogaStotal/listaAutzAplikacja.size());
+            out.newLine();
+            out.write((int)drogaRtotal/(iloscAutCalkowita-listaAutzAplikacja.size()));
             out.newLine();
             out.write(listaWynikow.toString());
             out.flush();
@@ -314,6 +370,11 @@ public class Symulacja extends javax.swing.JFrame {
         }
         return najblizszeWolneMiejsce;
 
+    }
+
+    private int drogaMiedzyPktami(int xPocz, int yPocz, int xKon, int yKon) {
+
+        return Math.abs(yKon - yPocz) + Math.abs(xKon - xPocz);
     }
 
     private Miejsce najblizszeMiejsce(ArrayList<Miejsce> miejsca, int xDoc, int yDoc) {

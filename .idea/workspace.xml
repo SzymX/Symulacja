@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fa20ba4-56f1-4680-9dcf-3ad8f8746b78" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Obiekt.java" afterPath="$PROJECT_DIR$/src/main/Obiekt.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Symulacja.java" afterPath="$PROJECT_DIR$/src/main/Symulacja.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -70,8 +69,8 @@
       <file leaf-file-name="Symulacja.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Symulacja.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36227044" vertical-offset="3218" max-vertical-offset="6045">
-              <caret line="231" column="16" selection-start-line="231" selection-start-column="16" selection-end-line="231" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.23205343" vertical-offset="4661" max-vertical-offset="6960">
+              <caret line="322" column="86" selection-start-line="322" selection-start-column="86" selection-end-line="322" selection-end-column="86" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#883#913#0" expanded="true" />
@@ -80,10 +79,10 @@
                 <element signature="e#3234#3243#0" expanded="true" />
                 <element signature="e#4033#4041#0" expanded="true" />
                 <element signature="e#5345#5353#0" expanded="true" />
-                <element signature="e#10209#10218#0" expanded="true" />
-                <element signature="e#11322#11444#0" expanded="true" />
-                <element signature="e#11433#11434#0" expanded="true" />
-                <element signature="e#13750#13759#0" expanded="true" />
+                <element signature="e#13808#13817#0" expanded="true" />
+                <element signature="e#15129#15251#0" expanded="true" />
+                <element signature="e#15240#15241#0" expanded="true" />
+                <element signature="e#17707#17716#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -497,7 +496,11 @@
       <created>1405276283435</created>
       <updated>1405276283435</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="najblizsze wolne miejsce, wprowadzenie obiektow">
+      <created>1405720550411</created>
+      <updated>1405720550411</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -529,6 +532,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297568" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329602" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29726368" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2960199" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -547,7 +551,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -583,7 +586,8 @@
     <MESSAGE value="usprawnienie symulacji prototyp" />
     <MESSAGE value="usprawnienie symulacji petla dla procentu z aplikacja" />
     <MESSAGE value="zmiana z min na sec" />
-    <option name="LAST_COMMIT_MESSAGE" value="zmiana z min na sec" />
+    <MESSAGE value="najblizsze wolne miejsce, wprowadzenie obiektow" />
+    <option name="LAST_COMMIT_MESSAGE" value="najblizsze wolne miejsce, wprowadzenie obiektow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -607,10 +611,10 @@
             <element signature="e#3234#3243#0" expanded="true" />
             <element signature="e#4033#4041#0" expanded="true" />
             <element signature="e#5345#5353#0" expanded="true" />
-            <element signature="e#10209#10218#0" expanded="true" />
-            <element signature="e#11322#11444#0" expanded="true" />
-            <element signature="e#11433#11434#0" expanded="true" />
-            <element signature="e#13750#13759#0" expanded="true" />
+            <element signature="e#13808#13817#0" expanded="true" />
+            <element signature="e#15129#15251#0" expanded="true" />
+            <element signature="e#15240#15241#0" expanded="true" />
+            <element signature="e#17707#17716#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -635,10 +639,10 @@
             <element signature="e#3234#3243#0" expanded="true" />
             <element signature="e#4033#4041#0" expanded="true" />
             <element signature="e#5345#5353#0" expanded="true" />
-            <element signature="e#10209#10218#0" expanded="true" />
-            <element signature="e#11322#11444#0" expanded="true" />
-            <element signature="e#11433#11434#0" expanded="true" />
-            <element signature="e#13750#13759#0" expanded="true" />
+            <element signature="e#13808#13817#0" expanded="true" />
+            <element signature="e#15129#15251#0" expanded="true" />
+            <element signature="e#15240#15241#0" expanded="true" />
+            <element signature="e#17707#17716#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -663,10 +667,10 @@
             <element signature="e#3234#3243#0" expanded="true" />
             <element signature="e#4033#4041#0" expanded="true" />
             <element signature="e#5345#5353#0" expanded="true" />
-            <element signature="e#10209#10218#0" expanded="true" />
-            <element signature="e#11322#11444#0" expanded="true" />
-            <element signature="e#11433#11434#0" expanded="true" />
-            <element signature="e#13750#13759#0" expanded="true" />
+            <element signature="e#13808#13817#0" expanded="true" />
+            <element signature="e#15129#15251#0" expanded="true" />
+            <element signature="e#15240#15241#0" expanded="true" />
+            <element signature="e#17707#17716#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -698,10 +702,10 @@
             <element signature="e#3234#3243#0" expanded="true" />
             <element signature="e#4033#4041#0" expanded="true" />
             <element signature="e#5345#5353#0" expanded="true" />
-            <element signature="e#10209#10218#0" expanded="true" />
-            <element signature="e#11322#11444#0" expanded="true" />
-            <element signature="e#11433#11434#0" expanded="true" />
-            <element signature="e#13750#13759#0" expanded="true" />
+            <element signature="e#13808#13817#0" expanded="true" />
+            <element signature="e#15129#15251#0" expanded="true" />
+            <element signature="e#15240#15241#0" expanded="true" />
+            <element signature="e#17707#17716#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -733,10 +737,10 @@
             <element signature="e#3234#3243#0" expanded="true" />
             <element signature="e#4033#4041#0" expanded="true" />
             <element signature="e#5345#5353#0" expanded="true" />
-            <element signature="e#10209#10218#0" expanded="true" />
-            <element signature="e#11322#11444#0" expanded="true" />
-            <element signature="e#11433#11434#0" expanded="true" />
-            <element signature="e#13750#13759#0" expanded="true" />
+            <element signature="e#13808#13817#0" expanded="true" />
+            <element signature="e#15129#15251#0" expanded="true" />
+            <element signature="e#15240#15241#0" expanded="true" />
+            <element signature="e#17707#17716#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -808,8 +812,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Symulacja.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36227044" vertical-offset="3218" max-vertical-offset="6045">
-          <caret line="231" column="16" selection-start-line="231" selection-start-column="16" selection-end-line="231" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.23205343" vertical-offset="4661" max-vertical-offset="6960">
+          <caret line="322" column="86" selection-start-line="322" selection-start-column="86" selection-end-line="322" selection-end-column="86" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#883#913#0" expanded="true" />
@@ -818,10 +822,10 @@
             <element signature="e#3234#3243#0" expanded="true" />
             <element signature="e#4033#4041#0" expanded="true" />
             <element signature="e#5345#5353#0" expanded="true" />
-            <element signature="e#10209#10218#0" expanded="true" />
-            <element signature="e#11322#11444#0" expanded="true" />
-            <element signature="e#11433#11434#0" expanded="true" />
-            <element signature="e#13750#13759#0" expanded="true" />
+            <element signature="e#13808#13817#0" expanded="true" />
+            <element signature="e#15129#15251#0" expanded="true" />
+            <element signature="e#15240#15241#0" expanded="true" />
+            <element signature="e#17707#17716#0" expanded="true" />
           </folding>
         </state>
       </provider>
