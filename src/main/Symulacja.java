@@ -4,6 +4,7 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
@@ -82,14 +83,14 @@ public class Symulacja extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-   //     for(procentAutzApka = 10; procentAutzApka < 95; procentAutzApka += 10) {
+        //     for(procentAutzApka = 10; procentAutzApka < 95; procentAutzApka += 10) {
 
         iloscAutCalkowita = Integer.parseInt(jTextField1.getText());
         czasPostoju = Integer.parseInt(jTextField2.getText());
         czasPrzybycia = Integer.parseInt(jTextField3.getText());
         czasPrzybyciaDoKolejnegoAuta = 3;
         iloscAutAktywnych = iloscAutCalkowita;
-         procentAutzApka = Integer.parseInt(jTextField4.getText());
+        procentAutzApka = Integer.parseInt(jTextField4.getText());
 
 
         //Tworzenie miejsc parkingowych
@@ -106,13 +107,44 @@ public class Symulacja extends javax.swing.JFrame {
         listaMiejsc = dodajuliceZparkingami(listaMiejsc, 0, 600, 999, 600);
         //System.out.println(listaMiejsc.size());
 
+        ArrayList<Obiekt> listaWjazdow = new ArrayList<Obiekt>();
+        listaWjazdow.add(new Obiekt(100, 0));
+        listaWjazdow.add(new Obiekt(400, 0));
+        listaWjazdow.add(new Obiekt(600, 0));
+        listaWjazdow.add(new Obiekt(900, 0));
+        listaWjazdow.add(new Obiekt(0, 100));
+        listaWjazdow.add(new Obiekt(0, 400));
+        listaWjazdow.add(new Obiekt(0, 600));
+        listaWjazdow.add(new Obiekt(100, 999));
+        listaWjazdow.add(new Obiekt(400, 999));
+        listaWjazdow.add(new Obiekt(600, 999));
+        listaWjazdow.add(new Obiekt(900, 999));
+        listaWjazdow.add(new Obiekt(999, 100));
+        listaWjazdow.add(new Obiekt(999, 400));
+        listaWjazdow.add(new Obiekt(999, 600));
+//
+//
+//        Obiekt wjazdB = new Obiekt(100,0);
+//        Obiekt wjazdC = new Obiekt(100,0);
+//        Obiekt wjazdD = new Obiekt(100,0);
+//        Obiekt wjazdE = new Obiekt(100,0);
+//        Obiekt wjazdF = new Obiekt(100,0);
+//        Obiekt wjazdG = new Obiekt(100,0);
+//        Obiekt wjazdH = new Obiekt(100,0);
+//        Obiekt wjazdI = new Obiekt(100,0);
+//        Obiekt wjazdJ = new Obiekt(100,0);
+//        Obiekt wjazdK = new Obiekt(100,0);
+//        Obiekt wjazdL = new Obiekt(100,0);
+//        Obiekt wjazdM = new Obiekt(100,0);
+//        Obiekt wjazdN = new Obiekt(100,0);
+
 
         List<Double> listaWynikow = new ArrayList<Double>();
 
         //rozpoznanie czy pojazd ma aplikacje
         Random random = new Random();
         Set<Integer> listaAutzAplikacja = listaAutzApka(iloscAutCalkowita, procentAutzApka, random);
-       // System.out.println(listaAutzAplikacja.size());
+        // System.out.println(listaAutzAplikacja.size());
         int samochod = 0;
 
         // glowna petla aplikacji
@@ -175,12 +207,13 @@ public class Symulacja extends javax.swing.JFrame {
                 if (!(wolnePrzyDocelowym.getX() == 99999)) {
                     //samochod parkuje i miejsce jest zajete
                     wolnePrzyDocelowym.setZajete(true);
-                    wolnePrzyDocelowym.setCzas((int) Math.round(r.nextGaussian()*55 + czasPostoju)*60);
+                    wolnePrzyDocelowym.setCzas((int) Math.round(r.nextGaussian() * 55 + czasPostoju) * 60);
 
                     double promien = Math.random() * 5 - 2.5 + 5.9;
                     double angle = Math.toRadians(Math.random() * 360);
                     int gpsX = wolnePrzyDocelowym.getX() + (int) Math.round(promien * Math.cos(angle));
                     int gpsY = wolnePrzyDocelowym.getY() + (int) Math.round(promien * Math.sin(angle));
+
 
                     if (listaAutzAplikacja.contains(samochod)) {   // procent ktory ma aplikacje
 
@@ -219,8 +252,8 @@ public class Symulacja extends javax.swing.JFrame {
             }
 
         }
-            System.out.println(procentAutzApka);
-            System.out.println(listaWynikow);
+        System.out.println(procentAutzApka);
+        System.out.println(listaWynikow);
         try {
             ArrayList<Integer> ustawienia = new ArrayList<Integer>();
             ustawienia.add(iloscAutCalkowita);
@@ -239,11 +272,11 @@ public class Symulacja extends javax.swing.JFrame {
             Thread.sleep(1000); //opoznienie w celu zapisu nowego pliku
         } catch (IOException e) {
             System.out.println(" Save file Exception");
-        } catch (InterruptedException ex){
+        } catch (InterruptedException ex) {
             Logger.getLogger(Symulacja.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-       // }
+        // }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -280,6 +313,27 @@ public class Symulacja extends javax.swing.JFrame {
             }
         }
         return najblizszeWolneMiejsce;
+
+    }
+
+    private Miejsce najblizszeMiejsce(ArrayList<Miejsce> miejsca, int xDoc, int yDoc) {
+        double odlegloscMiejscaOdObiektu = 999999D;
+        Miejsce najblizszeMiejsce = new Miejsce(99999, 99999);
+
+        for (Miejsce miejsce : miejsca) {
+            //sprawdzamy czy miejsce jest wolne
+            //System.out.println(i);
+            //pobieramy odleglosc od obiektu docelowego
+            double odleglosc = Math.abs(Math.sqrt(((miejsce.getX() - xDoc) * (miejsce.getX() - xDoc)) + ((miejsce.getY() - yDoc) * (miejsce.getY() - yDoc))));
+            //sprawdzamy, czy jest mniejsza od aktualnie najblizszego miejsca
+            if (odleglosc < odlegloscMiejscaOdObiektu) {
+                odlegloscMiejscaOdObiektu = odleglosc;
+                najblizszeMiejsce = miejsce;
+                //System.out.println("odleglosc: " + odleglosc);
+                //checkbox1.setState(true);
+            }
+        }
+        return najblizszeMiejsce;
 
     }
 
