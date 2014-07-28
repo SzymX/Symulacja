@@ -83,14 +83,14 @@ public class Symulacja extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        //     for(procentAutzApka = 10; procentAutzApka < 95; procentAutzApka += 10) {
+             for(procentAutzApka = 10; procentAutzApka < 95; procentAutzApka += 20) {
 
         iloscAutCalkowita = Integer.parseInt(jTextField1.getText());
         czasPostoju = Integer.parseInt(jTextField2.getText());
         czasPrzybycia = Integer.parseInt(jTextField3.getText());
         czasPrzybyciaDoKolejnegoAuta = 5;
         iloscAutAktywnych = iloscAutCalkowita;
-        procentAutzApka = Integer.parseInt(jTextField4.getText());
+     //   procentAutzApka = Integer.parseInt(jTextField4.getText());
 
 
         //Tworzenie miejsc parkingowych
@@ -152,7 +152,10 @@ public class Symulacja extends javax.swing.JFrame {
 
             //sprawdzanie, czy sa jeszcze samochody
             //jesli nie ma to konczy symulacje
-            if (iloscAutAktywnych == 0) break;
+            if (iloscAutAktywnych == 0) {
+                System.out.println("ilosc aut aktywnych = 0");
+                break;
+            }
             //System.out.println(iloscAutAktywnych);
             ArrayList<Miejsce> listaMiejscZajetych = new ArrayList<Miejsce>();
 
@@ -168,16 +171,16 @@ public class Symulacja extends javax.swing.JFrame {
                             miejsce.getMiejsceSystem().setWartSystem(0);
                         }
                         iloscAutAktywnych--;//zwalniamy kolejny samochod
-                        System.out.println("Koniec czasu i odjezdza. Zostało: " + iloscAutAktywnych);
+                        //System.out.println("Koniec czasu i odjezdza. Zostało: " + iloscAutAktywnych);
 
                     } else listaMiejscZajetych.add(miejsce);
                 }
             }
-            // System.out.println("Liczba miejsc zajetych: "+ listaMiejscZajetych.size());
+             System.out.println("Liczba miejsc zajetych: "+ listaMiejscZajetych.size());
 
 
             //przybywanie samochodow
-            if (czasPrzybyciaDoKolejnegoAuta == 0 && samochod < iloscAutCalkowita) {
+            if (czasPrzybyciaDoKolejnegoAuta == 0 /*&& samochod < iloscAutCalkowita*/) {
                 samochod = samochod + 1;
                 Random r = new Random();
                 //System.out.println(samochod);
@@ -203,8 +206,8 @@ public class Symulacja extends javax.swing.JFrame {
                     xDocelowe = (int) Math.round(r.nextGaussian() * 200 + 500);
                     yDocelowe = (int) Math.round(r.nextGaussian() * 200 + 500);
                     //System.out.println("x: "+xDocelowe+" y: "+yDocelowe);
-                    //xDocelowe = 500;
-                    //yDocelowe = 500;
+ //                   xDocelowe = 500;
+ //                   yDocelowe = 500;
 
                 } while (xDocelowe >= 1000 || yDocelowe >= 1000);
 
@@ -215,7 +218,7 @@ public class Symulacja extends javax.swing.JFrame {
                         drogaS = drogaMiedzyPktami(wjazd.getX(), wjazd.getY(), wolnePrzyDocelowymSys.getX(), wolnePrzyDocelowymSys.getY());
                         if (!wolnePrzyDocelowymSys.getZajete()) {        //jesli jest wolne
                             wolnePrzyDocelowymSys.setZajete(true);     //zajmuje miejsce
-                            System.out.println("Samochod "+samochod+" zaparkowal z apka. Lczba miejsc zajetych: "+(listaMiejscZajetych.size()+1));
+                            //System.out.println("Samochod "+samochod+" zaparkowal z apka. Lczba miejsc zajetych: "+(listaMiejscZajetych.size()+1));
                             wolnePrzyDocelowymSys.setCzas(losujczasPostoju(r, czasPostoju));
                             //System.out.println(wolnePrzyDocelowymSys.getCzas());
                             double promien = Math.random() * 5 - 2.5 + 5.9;       //lapie GPS
@@ -236,7 +239,7 @@ public class Symulacja extends javax.swing.JFrame {
                                 int dodatkowaDroga = drogaMiedzyPktami(wolnePrzyDocelowymSys.getX(), wolnePrzyDocelowymSys.getY(), wolneMiejsce.getX(), wolneMiejsce.getY());
                                 drogaS = drogaS + dodatkowaDroga;
                                 wolneMiejsce.setZajete(true);     //zajmuje miejsce
-                                System.out.println("Samochod "+samochod+" zaparkowal z apka. Lczba miejsc zajetych: "+(listaMiejscZajetych.size()+1));
+                                //System.out.println("Samochod "+samochod+" zaparkowal z apka. Lczba miejsc zajetych: "+(listaMiejscZajetych.size()+1));
 
                                 wolneMiejsce.setCzas(losujczasPostoju(r, czasPostoju));
                                // System.out.println(wolneMiejsce.getCzas());
@@ -270,7 +273,7 @@ public class Symulacja extends javax.swing.JFrame {
                     drogaR = drogaMiedzyPktami(wjazd.getX(), wjazd.getY(), najblizszePrzyDocelowym.getX(), najblizszePrzyDocelowym.getY());
                     if (!(najblizszePrzyDocelowym.getX() == 99999) && !najblizszePrzyDocelowym.getZajete()) {
                         najblizszePrzyDocelowym.setZajete(true);
-                        System.out.println("Samochod " + samochod + " zaparkowal bez apki (I proba). Lczba miejsc zajetych: " + (listaMiejscZajetych.size() + 1));
+                        //System.out.println("Samochod " + samochod + " zaparkowal bez apki (I proba). Lczba miejsc zajetych: " + (listaMiejscZajetych.size() + 1));
                         najblizszePrzyDocelowym.setCzas(losujczasPostoju(r, czasPostoju));
                         //                  System.out.println(najblizszePrzyDocelowym.getCzas());
 
@@ -279,7 +282,7 @@ public class Symulacja extends javax.swing.JFrame {
                         if (!(wolnePrzyDocelowym.getX() == 99999)) {
                             drogaR = drogaR + drogaMiedzyPktami(najblizszePrzyDocelowym.getX(), najblizszePrzyDocelowym.getY(), wolnePrzyDocelowym.getX(), wolnePrzyDocelowym.getY());
                             wolnePrzyDocelowym.setZajete(true);
-                            System.out.println("Samochod "+samochod+" zaparkowal bez apki (II proba). Lczba miejsc zajetych: "+(listaMiejscZajetych.size()+1));
+                            //System.out.println("Samochod "+samochod+" zaparkowal bez apki (II proba). Lczba miejsc zajetych: "+(listaMiejscZajetych.size()+1));
 
                             wolnePrzyDocelowym.setCzas(losujczasPostoju(r, czasPostoju));
                             //                        System.out.println(wolnePrzyDocelowym.getCzas());
@@ -339,15 +342,18 @@ public class Symulacja extends javax.swing.JFrame {
             ustawienia.add(czasPostoju);
             ustawienia.add(czasPrzybycia);
             ustawienia.add(procentAutzApka);
+            ArrayList<Integer> wyniki = new ArrayList<Integer>();
+            int drogaBezApp = (int) (drogaRtotal/(iloscAutCalkowita-listaAutzAplikacja.size()));
+            int drogaApp = (int) (drogaStotal/listaAutzAplikacja.size());
+            wyniki.add(drogaBezApp);
+            wyniki.add(drogaApp);
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM-HH:mm:ss");
             String date = simpleDateFormat.format(new Date());
             String filename = date + ".txt";
             BufferedWriter out = new BufferedWriter(new FileWriter(filename));
             out.write(ustawienia.toString());
-            //out.newLine();
-            //out.write((int)drogaStotal/listaAutzAplikacja.size());
-            //out.newLine();
-            //out.write((int)drogaRtotal/(iloscAutCalkowita-listaAutzAplikacja.size()));
+            out.newLine();
+            out.write(wyniki.toString());
             out.newLine();
             out.write(listaWynikow.toString());
             out.flush();
@@ -359,7 +365,7 @@ public class Symulacja extends javax.swing.JFrame {
             Logger.getLogger(Symulacja.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-        // }
+         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -429,7 +435,7 @@ public class Symulacja extends javax.swing.JFrame {
         do {
             czasPostoju = (int) (Math.round(r.nextGaussian() * 55 + czasPostoju) * 60);
 
-        } while (czasPostoju <= 0 || czasPostoju >= 28800);
+        } while (czasPostoju <= 0 || czasPostoju >= 28800); //TODO: poprawa do czasu
         return czasPostoju;
     }
 
