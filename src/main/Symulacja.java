@@ -83,14 +83,14 @@ public class Symulacja extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-             for(procentAutzApka = 10; procentAutzApka < 95; procentAutzApka += 20) {
+        //     for(procentAutzApka = 10; procentAutzApka < 95; procentAutzApka += 20) {
 
         iloscAutCalkowita = Integer.parseInt(jTextField1.getText());
         czasPostoju = Integer.parseInt(jTextField2.getText());
         czasPrzybycia = Integer.parseInt(jTextField3.getText());
         czasPrzybyciaDoKolejnegoAuta = 5;
         iloscAutAktywnych = iloscAutCalkowita;
-     //   procentAutzApka = Integer.parseInt(jTextField4.getText());
+       procentAutzApka = Integer.parseInt(jTextField4.getText());
 
 
         //Tworzenie miejsc parkingowych
@@ -136,11 +136,15 @@ public class Symulacja extends javax.swing.JFrame {
 
 
         List<Double> listaWynikow = new ArrayList<Double>();
+        List<Integer> zajeteMiejscaZapis = new ArrayList<Integer>();
 
         //rozpoznanie czy pojazd ma aplikacje
         Random random = new Random();
         Set<Integer> listaAutzAplikacja = listaAutzApka(iloscAutCalkowita, procentAutzApka, random);
-        System.out.println(listaAutzAplikacja.size());
+        System.out.println(listaAutzAplikacja);
+//        for (int i = 0; i < listaAutzAplikacja.size(); i++) {
+
+  //      }
         int samochod = 0;
         long drogaRtotal = 0;
         long drogaStotal = 0;
@@ -154,8 +158,7 @@ public class Symulacja extends javax.swing.JFrame {
             //jesli nie ma to konczy symulacje
             if (iloscAutAktywnych == 0) {
                 System.out.println("ilosc aut aktywnych = 0");
-                break;
-            }
+                break; }
             //System.out.println(iloscAutAktywnych);
             ArrayList<Miejsce> listaMiejscZajetych = new ArrayList<Miejsce>();
 
@@ -176,12 +179,16 @@ public class Symulacja extends javax.swing.JFrame {
                     } else listaMiejscZajetych.add(miejsce);
                 }
             }
-             System.out.println("Liczba miejsc zajetych: "+ listaMiejscZajetych.size());
+             //System.out.println("Liczba miejsc zajetych: "+ listaMiejscZajetych.size());
 
 
             //przybywanie samochodow
-            if (czasPrzybyciaDoKolejnegoAuta == 0 /*&& samochod < iloscAutCalkowita*/) {
+            if (czasPrzybyciaDoKolejnegoAuta == 0 && samochod < iloscAutCalkowita) {
                 samochod = samochod + 1;
+
+                if(samochod==iloscAutCalkowita){
+                    System.out.println("przybyl ostatni samochod w momencie "+ counter/60);
+                }
                 Random r = new Random();
                 //System.out.println(samochod);
 
@@ -309,7 +316,7 @@ public class Symulacja extends javax.swing.JFrame {
 
             //liczenie wskaźnika
 
-            if(counter%60 == 0) {
+            if(counter%60 == 0 ) {
                 double suma = 0;
                 for (Miejsce miejsce : listaMiejsc) {
                     suma = suma + Math.abs((miejsce.getZajete() ? 1 : 0) - miejsce.getWartSystem());
@@ -321,6 +328,8 @@ public class Symulacja extends javax.swing.JFrame {
                 wynik /= 100000;
 
                 listaWynikow.add(wynik);
+                zajeteMiejscaZapis.add(listaMiejscZajetych.size());
+
             }
 
 
@@ -356,6 +365,8 @@ public class Symulacja extends javax.swing.JFrame {
             out.write(wyniki.toString());
             out.newLine();
             out.write(listaWynikow.toString());
+            out.newLine();
+            out.write(zajeteMiejscaZapis.toString());
             out.flush();
             out.close();
             Thread.sleep(1000); //opoznienie w celu zapisu nowego pliku
@@ -365,7 +376,7 @@ public class Symulacja extends javax.swing.JFrame {
             Logger.getLogger(Symulacja.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-         }
+      //   }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -433,9 +444,9 @@ public class Symulacja extends javax.swing.JFrame {
 
     private int losujczasPostoju(Random r, int czasPostoju) {
         do {
-            czasPostoju = (int) (Math.round(r.nextGaussian() * 55 + czasPostoju) * 60);
+            czasPostoju = (r.nextInt(111) + 5) * 60; //losowo od 5 do 115 minut posotoju
 
-        } while (czasPostoju <= 0 || czasPostoju >= 28800); //TODO: poprawa do czasu
+        } while (czasPostoju <= 0 || czasPostoju > 6900); //TODO: poprawa do czasu
         return czasPostoju;
     }
 
